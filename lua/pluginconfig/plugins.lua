@@ -10,10 +10,10 @@ return require('packer').startup(function(use)
     use 'preservim/nerdtree'
     use 'OmniSharp/omnisharp-vim'
     use 'dense-analysis/ale'
-    -- use 'neoclide/coc.nvim'
     use 'ervandew/supertab'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-compe'
     use 'mfussenegger/nvim-jdtls'
+    use "EdenEast/nightfox.nvim"
 
 end)
