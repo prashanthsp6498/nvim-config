@@ -14,5 +14,6 @@ return require('packer').startup(function(use)
     use 'ervandew/supertab'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-compe'
+    use 'mfussenegger/nvim-jdtls'
 
 end)
