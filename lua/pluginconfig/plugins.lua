@@ -15,5 +15,8 @@ return require('packer').startup(function(use)
     use 'hrsh7th/nvim-compe'
     use 'mfussenegger/nvim-jdtls'
     use "EdenEast/nightfox.nvim"
-
+    use {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim"
+    }
 end)
