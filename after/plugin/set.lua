@@ -15,6 +15,8 @@ vim.opt.incsearch = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+vim.opt.undofile = true
+vim.opt.undodir = "~/.vim/undodir"
 
 
 -- Colorscheme
