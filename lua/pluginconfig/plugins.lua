@@ -8,15 +8,26 @@ return require('packer').startup(function(use)
     use 'junegunn/fzf.vim'
     use 'junegunn/fzf'
     use 'preservim/nerdtree'
-    use 'OmniSharp/omnisharp-vim'
     use 'dense-analysis/ale'
     use 'ervandew/supertab'
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe'
-    use 'mfussenegger/nvim-jdtls'
     use "EdenEast/nightfox.nvim"
     use {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim"
     }
+    -- lsp servers specific
+    use 'OmniSharp/omnisharp-vim'
+    use 'mfussenegger/nvim-jdtls'
+
+    -- cmp sources
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+
+    -- snips
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
 end)
