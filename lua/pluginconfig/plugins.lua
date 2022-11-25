@@ -5,8 +5,8 @@ return require('packer').startup(function(use)
     use 'vimwiki/vimwiki'
     use 'vim-airline/vim-airline'
     use 'tpope/vim-fugitive'
-    use 'junegunn/fzf.vim'
-    use 'junegunn/fzf'
+     --use 'junegunn/fzf.vim'
+     --use 'junegunn/fzf'
     use 'preservim/nerdtree'
     use 'dense-analysis/ale'
     use 'ervandew/supertab'
@@ -15,6 +15,9 @@ return require('packer').startup(function(use)
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim"
     }
+    use 'nvim-telescope/telescope.nvim'
+    use 'nvim-lua/plenary.nvim'
+
     -- lsp servers specific
     use 'OmniSharp/omnisharp-vim'
     use 'mfussenegger/nvim-jdtls'
