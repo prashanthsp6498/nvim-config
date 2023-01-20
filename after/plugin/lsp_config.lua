@@ -61,7 +61,7 @@ local servers = {
             pylsp = {
                 plugins = {
                     pycodestyle = {
-                        ignore = {'W391'},
+                        ignore = { 'W391' },
                         maxLineLength = 100
                     }
                 }
@@ -80,6 +80,13 @@ local servers = {
             diagnostics = { globals = { 'vim' } }
         },
     },
+
+    tsserver = {
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact",
+            "typescript.tsx" },
+        cmd = { "typescript-language-server", "--stdio" },
+        single_file_support = true,
+    }
 }
 
 --

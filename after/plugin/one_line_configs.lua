@@ -6,7 +6,8 @@ require('neodev').setup()
 
 -- Setup onedark color themes
 require('onedark').setup {
-    style = 'darker'
+    -- style = 'darker'
+    style = 'warmer'
 }
 require('onedark').load()
 
