@@ -2,10 +2,10 @@
 
 vim.opt.guicursor = ""
 
-vim.opt.nu = true;
+vim.opt.nu = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4
+vim.opt.tabstop = 8
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
@@ -17,7 +17,6 @@ vim.opt.smartindent = true
 vim.opt.wrap = false
 vim.opt.undofile = true
 -- vim.opt.undodir = "~/.vim/undodir"
-
 
 -- Colorscheme
 -- vim.cmd("colorscheme carbonfox")
@@ -31,10 +30,10 @@ vim.o.smartcase = true
 
 -- Decrease update time
 vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Set colorscheme
 vim.o.termguicolors = true
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
