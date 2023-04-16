@@ -13,3 +13,5 @@ require("indent_blankline").setup({
     char = "┊",
     show_trailing_blankline_indent = false,
 })
+
+vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)

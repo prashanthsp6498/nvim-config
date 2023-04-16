@@ -10,4 +10,10 @@ function ColorBackground(color)
     end
 end
 
-ColorBackground()
+return {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function ()
+       ColorBackground()
+    end
+}
