@@ -1,6 +1,6 @@
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local function on_attach(_, bufnr)
     -- NOTE: Remember that lua is a real programming language, and as such it is possible
     -- to define small helper and utility functions so you don't have to repeat yourself
     -- many times.
@@ -113,48 +113,52 @@ local servers = {
     },
 }
 
-local function setUp()
-    print("Hello setup")
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+local function lspSetUp()
+    local lsp = require("lsp-zero").preset({})
 
-    -- Setup mason so it can manage external tooling
-    require("mason").setup()
+    lsp.on_attach(on_attach)
 
-    -- Ensure the servers above are installed
-    local mason_lspconfig = require("mason-lspconfig")
+    -- (Optional) Configure lua language server for neovim
+    require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
-    mason_lspconfig.setup_handlers({
-        function(server_name)
-            require("lspconfig")[server_name].setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = servers[server_name],
-            })
-        end,
+    lsp.setup()
+end
+
+local function setUpLspServers()
+    local mason_lspConfig = require("mason-lspconfig")
+    mason_lspConfig.setup({
+        ensure_installed = vim.tbl_keys(servers)
     })
-
-    mason_lspconfig.setup({
-        ensure_installed = vim.tbl_keys(servers),
-    })
+    
 end
 
 return {
-    -- LSP Configuration & Plugins
-    "neovim/nvim-lspconfig",
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v2.x",
     dependencies = {
-        -- Automatically install LSPs to stdpath for neovim
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        -- LSP Support
+        { "neovim/nvim-lspconfig" },
+        {
+            "williamboman/mason.nvim",
+            build = function()
+                pcall(vim.cmd, "MasonUpdate")
+            end,
+        },
+        {
+            "williamboman/mason-lspconfig.nvim",
+            -- config = function ()
+            --     setUpLspServers()
+            -- end
+        },
+        { "j-hui/fidget.nvim" },
 
-        -- Useful status updates for LSP
-        "j-hui/fidget.nvim",
-
-        -- Additional lua configuration, makes nvim stuff amazing
-        "folke/neodev.nvim",
+        -- Autocompletion
+        { "hrsh7th/nvim-cmp" },     -- Required
+        { "hrsh7th/cmp-nvim-lsp" }, -- Required
+        { "L3MON4D3/LuaSnip" },     -- Required
     },
     config = function()
-        setUp()
+        lspSetUp()
+        setUpLspServers()
     end,
 }

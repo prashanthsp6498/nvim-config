@@ -1,5 +1,4 @@
 return {
-    "hrsh7th/cmp-nvim-lua",
     "norcalli/nvim-colorizer.lua",
     "lukas-reineke/indent-blankline.nvim", -- Add indentation guides even on blank lines
     "numToStr/Comment.nvim", -- "gc" to comment visual regions/lines
@@ -7,17 +6,14 @@ return {
     "nvim-treesitter/playground",
 
     -- Git related plugins
-    "tpope/vim-fugitive",
+    {
+        "tpope/vim-fugitive",
+        keys = {
+            {"<leader>g", ":G<CR>", desc = "fugitive" }
+        },
+    },
     "tpope/vim-rhubarb",
 
     -- undotree
     "mbbill/undotree",
-
-    {
-        -- Autocompletion
-        "hrsh7th/nvim-cmp",
-        dependencies = { "hrsh7th/cmp-nvim-lsp", "L3MON4D3/LuaSnip", "saadparwaiz1/cmp_luasnip" },
-    },
-
-
 }
