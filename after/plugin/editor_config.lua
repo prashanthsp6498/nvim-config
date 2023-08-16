@@ -39,3 +39,6 @@ vim.o.termguicolors = true
 vim.o.completeopt = "menuone,noselect"
 
 vim.keymap.set("n", "<leader>e", ":Ex<CR>", { desc = "Netrw" })
+
+vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", { noremap = true })
+vim.api.nvim_set_keymap("c", "<M-w>", "<S-Right>", { noremap = true })

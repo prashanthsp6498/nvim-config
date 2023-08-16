@@ -150,7 +150,10 @@ return {
             --     setUpLspServers()
             -- end
         },
-        { "j-hui/fidget.nvim" },
+        {
+            "j-hui/fidget.nvim",
+            tag = "legacy"
+        },
 
         -- Autocompletion
         { "hrsh7th/nvim-cmp" },     -- Required
