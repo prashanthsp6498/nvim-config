@@ -111,6 +111,9 @@ local servers = {
         cmd = { "csharp-ls" },
         init_options = { AutomaticWorkspaceInit = true },
     },
+    clangd = {
+        filetypes = {"c", "cpp"}
+    }
 }
 
 local function lspSetUp()
