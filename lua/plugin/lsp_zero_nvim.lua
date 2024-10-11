@@ -113,6 +113,9 @@ local servers = {
     },
     clangd = {
         filetypes = {"c", "cpp"}
+    },
+    zls = {
+        filetypes = "zig",
     }
 }
 
