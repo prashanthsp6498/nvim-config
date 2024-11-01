@@ -29,6 +29,7 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
         {
+            "nvim-neotest/nvim-nio",
             "rcarriga/nvim-dap-ui",
             config = function()
                 require("dapui").setup()
