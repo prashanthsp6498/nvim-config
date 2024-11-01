@@ -75,19 +75,6 @@ local servers = {
             runtime = { version = "LuaJIT" },
         },
     },
-    tsserver = {
-        filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-        },
-        cmd = { "typescript-language-server", "--stdio" },
-        single_file_support = true,
-        detached = false,
-    },
     gopls = {
         cmd = { "gopls" },
         filetypes = { "go", "gomod", "gowork", "gotmpl" },
