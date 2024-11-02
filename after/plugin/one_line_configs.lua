@@ -21,3 +21,4 @@ require("ibl").setup({
 })
 
 vim.keymap.set('n', '<leader>ut', vim.cmd.UndotreeToggle)
+vim.opt.shortmess:append("I")
