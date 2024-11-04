@@ -29,7 +29,13 @@ local function telescopeKeymapper()
     vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
     vim.keymap.set("n", "<leader><space>t", ":Telescope<CR>", { desc = "Telescope" })
-    vim.keymap.set("n", "<leader>gr", require("telescope.builtin").lsp_references, { desc = "References" })
+    vim.keymap.set(
+        "n",
+        "<leader>gr",
+        function()
+            require("telescope.builtin").lsp_references({show_line=false})
+        end,
+        { desc = "References" })
 end
 
 -- Fuzzy Finder (files, lsp, etc)
