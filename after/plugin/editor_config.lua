@@ -42,3 +42,5 @@ vim.keymap.set("n", "<leader>e", ":Ex<CR>", { desc = "Netrw" })
 
 vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", { noremap = true })
 vim.api.nvim_set_keymap("c", "<M-w>", "<S-Right>", { noremap = true })
+vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv")
