@@ -1,41 +1,5 @@
-local function setUp()
-    require("telescope").setup({
-        defaults = {
-            mappings = {
-                i = {
-                    ["<C-u>"] = false,
-                    ["<C-d>"] = false,
-                },
-            },
-        },
-    })
-end
-
-local function telescopeKeymapper()
-    -- See `:help telescope.builtin`
-    vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
-    vim.keymap.set("n", "<leader>fb", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
-    vim.keymap.set("n", "<leader>/", function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-            winblend = 10,
-            previewer = false,
-        }))
-    end, { desc = "[/] Fuzzily search in current buffer]" })
-
-    vim.keymap.set("n", "<leader>ff", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
-    vim.keymap.set("n", "<leader>sh", require("telescope.builtin").help_tags, { desc = "[S]earch [H]elp" })
-    vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
-    vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-    vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<leader><space>t", ":Telescope<CR>", { desc = "Telescope" })
-    vim.keymap.set(
-        "n",
-        "<leader>gr",
-        function()
-            require("telescope.builtin").lsp_references({show_line=false})
-        end,
-        { desc = "References" })
+local get_ivy_theme_config = function ()
+    return require("telescope.themes").get_ivy({})
 end
 
 -- Fuzzy Finder (files, lsp, etc)
@@ -44,9 +8,25 @@ return {
     branch = "0.1.x",
     dependencies = {
         "nvim-lua/plenary.nvim",
+        config = function()
+            vim.keymap.set("n", "<leader>s", "<Plug>PlenaryTestFile")
+        end,
     },
-    config = function()
-        setUp()
-        telescopeKeymapper()
-    end,
+    opts = {
+        defaults = get_ivy_theme_config(),
+        pickers = {
+            find_files = {
+                find_command = {'rg', '--files', '-g', '!.git' },
+            },
+        },
+    },
+    keys = {
+        {"<leader>ff", "<Cmd>Telescope find_files<CR>",  mode = { "n" }, desc = "[F]ind [F]iles"},
+        {"<leader>sw", "<Cmd> Telescope grep_string<CR>", mode = { "n" }, desc = "[S]earch Current [W]ord"},
+        {"<leader>sg", "<Cmd> Telescope live_grep<CR>", mode = { "n" }, desc = "[S]earch by [G]rep"},
+        {"<leader>sd", "<Cmd> Telescope diagnostics<CR>", mode = { "n" }, desc = "[S]earch [D]iagnostics"},
+        {"<leader><space>t", "<Cmd> Telescope<CR>", mode = { "n" }, desc = "[T]elescope"},
+        {"<leader>gr", function () require("telescope.builtin").lsp_references({show_line=false}) end, mode = { "n" }, desc = "List References"},
+        {"<leader>/", function () require("telescope.builtin").current_buffer_fuzzy_find({show_line = false}) end, mode = { "n" }, desc = "Current buffer fuzzy find"},
+    }
 }
