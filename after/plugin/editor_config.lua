@@ -38,9 +38,12 @@ vim.o.termguicolors = true
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
-vim.keymap.set("n", "<leader>e", ":Ex<CR>", { desc = "Netrw" })
+vim.opt.shortmess:append("I")
+
+vim.cmd [[ highlight Normal  guibg=#121212 gui=NONE ctermfg=254 ctermbg=235 cterm=NONE
+           highlight NonText  guibg=#121212 gui=NONE ctermfg=246 ctermbg=235 cterm=NONE ]]
 
 vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", { noremap = true })
 vim.api.nvim_set_keymap("c", "<M-w>", "<S-Right>", { noremap = true })
-vim.keymap.set("v", "<M-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<M-J>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<M-K>", ":m '<-2<CR>gv=gv")

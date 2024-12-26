@@ -105,65 +105,86 @@ local servers = {
     }
 }
 
-local function lspSetUp()
-    local lsp = require("lsp-zero").preset({})
-
-    lsp.on_attach(on_attach)
-
-    -- (Optional) Configure lua language server for neovim
-    require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-    lsp.setup()
-end
-
-local function setUpLspServers()
-    local mason_lspConfig = require("mason-lspconfig")
-    mason_lspConfig.setup({
-        ensure_installed = vim.tbl_keys(servers)
-    })
-    
-end
-
 return {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v2.x",
-    dependencies = {
-        -- LSP Support
-        { "neovim/nvim-lspconfig" },
-        {
-            "williamboman/mason.nvim",
-            build = function()
-                pcall(vim.cmd, "MasonUpdate")
-            end,
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            servers = servers
         },
-        {
-            "williamboman/mason-lspconfig.nvim",
-            -- config = function ()
-            --     setUpLspServers()
-            -- end
-        },
-        {
-            "j-hui/fidget.nvim",
-            tag = "legacy"
-        },
-
-        -- Autocompletion
-        { "hrsh7th/nvim-cmp" },     -- Required
-        { "hrsh7th/cmp-nvim-lsp" }, -- Required
-        { "L3MON4D3/LuaSnip" },     -- Required
-
-        -- dap
-        {
-            "jay-babu/mason-nvim-dap.nvim",
-            config = function ()
-                require("mason-nvim-dap").setup({
-                    ensure_installed = { "codelldb", "delve", "python"}
-                })
+        config = function (_, opts)
+            local lspconfig = require("lspconfig")
+            for server, config in pairs(opts.servers) do
+                config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+                config.on_attach = on_attach
+                lspconfig[server].setup(config)
             end
+        end,
+        dependencies = {
+            {
+                "Saghen/blink.cmp",
+                event = "LspAttach",
+                version = 'v0.*',
+                opts = {
+                    keymap = { preset = "default" },
+
+                    completion = {
+                        -- Show documentation when selecting a completion item
+                        documentation = { auto_show = true, auto_show_delay_ms = 500 },
+                    },
+                    snippets = {
+                        expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
+                        active = function(filter)
+                            if filter and filter.direction then
+                                return require('luasnip').jumpable(filter.direction)
+                            end
+                            return require('luasnip').in_snippet()
+                        end,
+                        jump = function(direction) require('luasnip').jump(direction) end,
+                    },
+                    sources = {
+                        default = { "lsp", "path", "luasnip", "buffer" },
+                        -- Optionally disable cmdline completions
+                        cmdline = {},
+                    },
+                    signature = { enabled = true }
+                },
+                opts_extend = { "sources.default" },
+                dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' }
+            },
+            {
+                "williamboman/mason.nvim",
+                opts = {}
+            },
+            {
+                "folke/neodev.nvim",
+                opts = {}
+            },
+            {
+                "j-hui/fidget.nvim",
+                opts = {}
+            },
         }
     },
-    config = function()
-        lspSetUp()
-        setUpLspServers()
-    end,
+    {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+            local null_ls = require("null-ls")
+            null_ls.setup({
+                autostart = true,
+                sources = {
+                    null_ls.builtins.formatting.stylua,
+                    null_ls.builtins.diagnostics.eslint_d,
+                    -- null_ls.builtins.completion.spell,
+                    null_ls.builtins.formatting.prettier,
+                    null_ls.builtins.formatting.zigfmt
+                },
+            })
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = vim.tbl_keys(servers)
+        }
+    },
 }

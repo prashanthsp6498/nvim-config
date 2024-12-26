@@ -1,7 +1,7 @@
 local M = {}
-local dap = require("dap")
 
 M.SetUp_C_Cpp_Rust = function()
+    local dap = require("dap")
     dap.adapters.lldb = {
         type = "executable",
         command = "/usr/bin/lldb-vscode-14", -- adjust as needed, must be absolute path
@@ -43,6 +43,7 @@ M.SetUp_C_Cpp_Rust = function()
 end
 
 M.SetUp_Python = function()
+    local dap = require("dap")
     dap.configurations.python = {
         {
             type = "python",

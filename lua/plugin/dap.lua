@@ -1,9 +1,9 @@
 
-vim.keymap.set("n", "<leader>db", ":lua require'dap'.continue()<CR>")
+vim.keymap.set("n", "<leader>ds", ":lua require'dap'.continue()<CR>")
 vim.keymap.set("n", "<M-o>", ":lua require'dap'.step_over()<CR>")
 vim.keymap.set("n", "<M-i>", ":lua require'dap'.step_into()<CR>")
 vim.keymap.set("n", "<M-O>", ":lua require'dap'.step_out()<CR>")
-vim.keymap.set("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>")
+vim.keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>")
 vim.keymap.set("n", "<leader>dr", ":lua require'dap'.toggle_breakpoint()<CR>")
 
 local function configuration()
@@ -26,27 +26,34 @@ local function configuration()
 end
 
 return {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-        {
-            "nvim-neotest/nvim-nio",
-            "rcarriga/nvim-dap-ui",
-            config = function()
-                require("dapui").setup()
-            end,
-        },
-        {
-            "theHamsta/nvim-dap-virtual-text",
-            config = function()
-                require("nvim-dap-virtual-text").setup()
-            end,
-        },
-        {
-            "nvim-telescope/telescope-dap.nvim",
-            config = function()
-                require("telescope").load_extension("dap")
-            end,
-        },
+    {
+        "rcarriga/nvim-dap-ui",
+        event = "LspAttach",
+        config = function()
+            configuration()
+        end,
+        dependencies = {
+            {
+                "nvim-neotest/nvim-nio",
+            },
+            {
+                "theHamsta/nvim-dap-virtual-text",
+                opts = { },
+            },
+            {
+                "mfussenegger/nvim-dap",
+                event = "LspAttach",
+            },
+        }
     },
-    config = configuration,
+
+    {
+
+        "jay-babu/mason-nvim-dap.nvim",
+        config = function ()
+            require("mason-nvim-dap").setup({
+                ensure_installed = { "codelldb", "delve", "python"}
+            })
+        end,
+    }
 }
