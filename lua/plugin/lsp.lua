@@ -88,6 +88,7 @@ return {
                         documentation = { auto_show = true, auto_show_delay_ms = 500 },
                     },
                     snippets = {
+                        preset = 'luasnip',
                         expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
                         active = function(filter)
                             if filter and filter.direction then
@@ -98,18 +99,27 @@ return {
                         jump = function(direction) require('luasnip').jump(direction) end,
                     },
                     sources = {
-                        default = { "lsp", "path", "luasnip", "buffer" },
+                        default = { 'lsp', 'buffer', 'snippets', 'path' },
                         -- Optionally disable cmdline completions
-                        cmdline = {},
                     },
-                    signature = { enabled = true }
+                    signature = {
+                        enabled = true,
+                        window = {
+                            show_documentation = true
+                        }
+                    }
                 },
                 opts_extend = { "sources.default" },
                 dependencies = { 'L3MON4D3/LuaSnip', version = 'v2.*' }
             },
             {
                 "williamboman/mason.nvim",
-                opts = {}
+                opts = {
+                    registries = {
+                        "github:mason-org/mason-registry",
+                        "github:Crashdummyy/mason-registry",
+                    },
+                }
             },
             {
                 "folke/neodev.nvim",
@@ -122,7 +132,8 @@ return {
         }
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        -- "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
             null_ls.setup({
