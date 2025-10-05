@@ -40,6 +40,7 @@ M.SetUp_C_Cpp_Rust = function()
 
     dap.configurations.c = dap.configurations.cpp
     dap.configurations.rust = dap.configurations.cpp
+    dap.configurations.zig = dap.configurations.cpp
 end
 
 M.SetUp_Python = function()
