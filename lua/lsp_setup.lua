@@ -41,6 +41,15 @@ vim.lsp.config("roslyn", {
         }
     },
 })
+ vim.lsp.config("rust_analyzer", {
+   settings = {
+     ['rust-analyzer'] = {
+       diagnostics = {
+         enable = false;
+       }
+     }
+   }
+ })
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -72,3 +81,5 @@ vim.lsp.enable("lua_ls")
 vim.lsp.enable("pylsp")
 vim.lsp.enable("zls")
 vim.lsp.enable("roslyn")
+vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("clangd")
