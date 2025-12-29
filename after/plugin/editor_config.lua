@@ -47,3 +47,5 @@ vim.api.nvim_set_keymap("c", "<M-b>", "<S-Left>", { noremap = true })
 vim.api.nvim_set_keymap("c", "<M-w>", "<S-Right>", { noremap = true })
 vim.api.nvim_set_keymap("v", "<M-J>", ":m '>+1<CR>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<M-K>", ":m '<-2<CR>gv=gv", { noremap = true })
+
+vim.api.nvim_set_keymap("n", "<Space>m", ":make<CR>", { noremap = true })
