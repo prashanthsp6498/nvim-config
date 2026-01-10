@@ -40,6 +40,13 @@ M.on_attach = function(_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
         vim.lsp.buf.format()
     end, { desc = "Format current buffer with LSP" })
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        callback = function(args)
+            vim.lsp.buf.format({ async = false, bufnr = buf })
+        end
+    })
+
 end
 
 return M
