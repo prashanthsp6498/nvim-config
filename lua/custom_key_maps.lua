@@ -22,4 +22,12 @@ M.SetMake = function ()
 
 end
 
+M.compile = function()
+    vim.ui.input({ prompt = "Compile : " }, function(input)
+        input = input:gsub("^%s+", "")
+        input = input:gsub("%s+$", "")
+        vim.bo.makeprg = input
+    end)
+end
+
 return M
