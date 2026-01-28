@@ -23,7 +23,11 @@ M.SetMake = function ()
 end
 
 M.compile = function()
-    vim.ui.input({ prompt = "Compile : " }, function(input)
+    vim.ui.input({
+        prompt = "Compile : ",
+        default = vim.bo.makeprg,
+        completion="shellcmd"
+    }, function(input)
         input = input:gsub("^%s+", "")
         input = input:gsub("%s+$", "")
         vim.bo.makeprg = input
