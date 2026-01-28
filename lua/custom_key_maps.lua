@@ -34,4 +34,13 @@ M.compile = function()
     end)
 end
 
+M.duplicate_line = function()
+    local cur_line = vim.api.nvim_get_current_line()
+    local win = vim.api.nvim_get_current_win()
+    local buf = vim.api.nvim_get_current_buf()
+    local cursor_info = vim.api.nvim_win_get_cursor(win)
+    vim.api.nvim_buf_set_lines(buf, cursor_info[1], cursor_info[1], false, {cur_line})
+    vim.api.nvim_win_set_cursor(win, {cursor_info[1]+1, cursor_info[2]});
+end
+
 return M

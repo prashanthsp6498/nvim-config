@@ -51,3 +51,4 @@ vim.api.nvim_set_keymap("v", "<M-K>", ":m '<-2<CR>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("n", "<Space>m", ":make<CR>", { noremap = true })
 
 vim.keymap.set("n", "<Space>c", require("custom_key_maps").compile, { noremap = true })
+vim.keymap.set("n", "<C-,>", require("custom_key_maps").duplicate_line, { noremap = true })
