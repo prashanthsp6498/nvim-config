@@ -1,7 +1,7 @@
 vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
-    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+    { src = "https://github.com/lewis6991/gitsigns.nvim" }, -- remove this since it is useless
 
     -- lsp
     { src = "https://github.com/neovim/nvim-lspconfig" },
@@ -19,4 +19,6 @@ vim.pack.add({
     { src = "https://github.com/theHamsta/nvim-dap-virtual-text" },
     { src = "https://github.com/rcarriga/nvim-dap-ui" },
     { src = "https://github.com/nvim-neotest/nvim-nio" },
+
+    {src = "https://github.com/stevearc/oil.nvim" }
 })

@@ -8,3 +8,6 @@ require("gitsigns").setup({
         changedelete = { text = "~" },
     },
 })
+
+require("oil").setup()
+vim.keymap.set("n", "-", require("oil").open)

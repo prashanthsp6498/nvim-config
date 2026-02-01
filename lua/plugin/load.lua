@@ -1,5 +1,6 @@
 require("telescope_setup")
 require("lsp_setup")
+require("misc_setup")
 
 -- load dap, treesitter only when lsp attached otherwise skip
 -- which improve loading time of nvim in windows.
