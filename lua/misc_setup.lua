@@ -9,5 +9,6 @@ require("gitsigns").setup({
     },
 })
 
+require('vim._core.ui2').enable({})
 require("oil").setup()
 vim.keymap.set("n", "-", require("oil").open)
