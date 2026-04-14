@@ -26,8 +26,11 @@ M.compile = function()
     vim.ui.input({
         prompt = "Compile : ",
         default = vim.bo.makeprg,
-        completion="shellcmd"
+        completion="shellcmdline"
     }, function(input)
+        if (input == nil) then
+            return
+        end
         input = input:gsub("^%s+", "")
         input = input:gsub("%s+$", "")
         vim.bo.makeprg = input
