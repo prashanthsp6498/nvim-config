@@ -32,18 +32,6 @@
       "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
-    "nvim-treesitter": {
-      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
-    },
-    "nvim-treesitter-context": {
-      "rev": "41847d3dafb5004464708a3db06b14f12bde548a",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context"
-    },
-    "nvim-treesitter-textobjects": {
-      "rev": "71385f191ec06ffc60e80e6b0c9a9d5daed4824c",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
-    },
     "oil.nvim": {
       "rev": "f55b25e493a7df76371cfadd0ded5004cb9cd48a",
       "src": "https://github.com/stevearc/oil.nvim"
@@ -55,10 +43,6 @@
     "roslyn.nvim": {
       "rev": "14ff65704f2a1658f55646618d6520cf00b3f576",
       "src": "https://github.com/seblyng/roslyn.nvim"
-    },
-    "telescope.nvim": {
-      "rev": "b4da76be54691e854d3e0e02c36b0245f945c2c7",
-      "src": "https://github.com/nvim-telescope/telescope.nvim"
     }
   }
 }
